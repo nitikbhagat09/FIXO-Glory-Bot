@@ -2,7 +2,7 @@ services:
   - type: web
     name: fixo-dev-glory-bot
     runtime: python
-    repo: https://github.com/your-username/guild-glory-bot
+    repo: https://github.com/nitikbhagat09/FIXO-Glory-Bot
     plan: free
     region: singapore
     buildCommand: pip install -r backend/requirements.txt
