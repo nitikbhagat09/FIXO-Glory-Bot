@@ -1,19 +1,21 @@
 import os
-# saari gandi characters ko saaf karega
-bad_chars = {
-    "—": "-", "–": "-", "‘": "'", "’": "'", "“": '"', "”": '"',
-    "එක": "", "…": "..."
-}
+import requests
 
-for root, dirs, files in os.walk("backend"):
-    for file in files:
-        if file.endswith(".py"):
-            path = os.path.join(root, file)
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                content = f.read()
-            for bad, good in bad_chars.items():
-                content = content.replace(bad, good)
-            with open(path, "w", encoding="utf-8") as f:
-                f.write(content)
+# FIXO DEV - FreeFire Real API Integration
 
-print("All files cleaned!")
+class FreeFireAPI:
+    def __init__(self):
+        self.base_url = "https://api.example.com"
+        self.api_key = os.getenv("FREEFIRE_API_KEY", "")
+
+    def get_player_info(self, player_id):
+        try:
+            url = f"{self.base_url}/player/{player_id}"
+            headers = {"Authorization": f"Bearer {self.api_key}"}
+            response = requests.get(url, headers=headers, timeout=10)
+            return response.json()
+        except Exception as e:
+            print(f"Error: {e}")
+            return None
+
+freefire_api = FreeFireAPI()
