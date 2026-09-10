@@ -1,10 +1,10 @@
 """
 
 """
-FIXO DEV — FreeFire Real API Integration
+FIXO DEV - FreeFire Real API Integration
 """
 
-# ===== PATH SETUP — Protos එක හොයාගන්න =====
+# ===== PATH SETUP - Protos =====
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
