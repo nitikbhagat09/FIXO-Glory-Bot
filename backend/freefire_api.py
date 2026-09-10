@@ -1,18 +1,19 @@
-# FIXO DEV - FreeFire Real API Integration
-# ===== PATH SETUP - Protos =====
-import sys
 import os
-import requests
+# saari gandi characters ko saaf karega
+bad_chars = {
+    "—": "-", "–": "-", "‘": "'", "’": "'", "“": '"', "”": '"',
+    "එක": "", "…": "..."
+}
 
-class FreeFireAPI:
-    def __init__(self):
-        self.base_url = "https://api.example.com"
+for root, dirs, files in os.walk("backend"):
+    for file in files:
+        if file.endswith(".py"):
+            path = os.path.join(root, file)
+            with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+            for bad, good in bad_chars.items():
+                content = content.replace(bad, good)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(content)
 
-    def get_player_info(self, uid):
-        try:
-            return {"uid": uid, "status": "ok", "name": "Player"}
-        except Exception as e:
-            return {"error": str(e)}
-
-    def get_guild_info(self, guild_id):
-        return {"guild_id": guild_id, "status": "ok"}
+print("All files cleaned!")
